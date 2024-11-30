@@ -4,7 +4,7 @@ import streamlit as st
 
 
 # set the title of the app, add a brief description, and set up the select boxes.
-st.header("🎰  Monte Carlo Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')
+st.header("Monte Carlo Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')
 st.write('An application to run Monte Carlo analysis tools on trading outcomes for quantitative decision making.')
 st.markdown("""**👈 Select a tool from the sidebar** """)
 

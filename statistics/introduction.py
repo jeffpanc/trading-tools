@@ -9,11 +9,11 @@ import streamlit as st
 
 
 # configure the page
-st.set_page_config(
-    page_title="Monte Carlo Analysis",
-    page_icon="🎰",
-    layout="wide",
-    initial_sidebar_state="expanded")
+# st.set_page_config(
+#     page_title="Monte Carlo Analysis",
+#     page_icon="🎰",
+#     layout="wide",
+#     initial_sidebar_state="expanded")
 
 # set the title of the app, add a brief description, and set up the select boxes.
 st.header("🎰  Monte Carlo Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')

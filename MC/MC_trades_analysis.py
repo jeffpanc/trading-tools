@@ -51,7 +51,7 @@ risk_free = [
 ]
 
 # set the title of the app, add a brief description, and set up the select boxes.
-st.header("Trading Analysis and Account Sizing", divider = 'rainbow')
+st.header("Analysis and Account Sizing", divider = 'rainbow')
 st.markdown(
     """
     **Uses:**

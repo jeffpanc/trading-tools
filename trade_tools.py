@@ -7,7 +7,7 @@ st.set_page_config(
 
 
 MC_intro = st.Page("MC/MC_intro.py", title="Introduction", icon="✅", default=True)
-MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Trades Analysis", icon="✅")
+MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Analysis and Account Sizing", icon="✅")
 # MC_robustness_testing = st.Page("MC/MC_robustness_testing.py", title="Robustness Testing", icon="✅")
 # MC_cone_analysis = st.Page("MC/MC_cone_analysis.py", title="System Monitor", icon="✅")
 

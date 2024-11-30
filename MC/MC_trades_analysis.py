@@ -50,15 +50,8 @@ risk_free = [
     "0.05",
 ]
 
-# # configure the page
-# st.set_page_config(
-#      page_title="Monte Carlo Trading Analysis",
-#      page_icon="📈",
-#      layout="wide",
-#      initial_sidebar_state="expanded")
-
 # set the title of the app, add a brief description, and set up the select boxes.
-st.header("🎲 Possible Future Outcomes and Account Sizing", divider = 'rainbow')
+st.header("Trading Analysis and Account Sizing", divider = 'rainbow')
 st.markdown(
     """
     **Uses:**

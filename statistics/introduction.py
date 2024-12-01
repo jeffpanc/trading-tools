@@ -12,55 +12,55 @@ st.markdown(
     """
     ### Types of Analysis
     * Level 0: Summary Statistics
-    Initial and Final Equity
-    CAGR
-    Annual Volatility
-    Cumulative Returns
-    Best and Worst Year
-    Max Drawdown
-    Annual Sharpe Ratio
-    Annual Sortino Ratio
-    Market Correlation
-    Equity Curve
-    Drawdown Curve
-    Account Returns
-    Yearly Returns
-    Monthly Returns Heatmap
-    Monthly Active Returns Heatmap
+        Initial and Final Equity
+        CAGR
+        Annual Volatility
+        Cumulative Returns
+        Best and Worst Year
+        Max Drawdown
+        Annual Sharpe Ratio
+        Annual Sortino Ratio
+        Market Correlation
+        Equity Curve
+        Drawdown Curve
+        Account Returns
+        Yearly Returns
+        Monthly Returns Heatmap
+        Monthly Active Returns Heatmap
     * Level 1: Trade Statistics
-    Number of Trades
-    Wins
-    Percent Wins
-    Win/Loss Ratio
-    Average Trade Profit
-    Maximum Win and Loss
-    Maximum Win an Loss Streaks
-    Profit Factor
-    Expectancy
-    Trade Returns
+        Number of Trades
+        Wins
+        Percent Wins
+        Win/Loss Ratio
+        Average Trade Profit
+        Maximum Win and Loss
+        Maximum Win an Loss Streaks
+        Profit Factor
+        Expectancy
+        Trade Returns
     * Level 2: System Statistics
-    Month and Year Returns Arithmetic Mean
-    Month and Year Returns Geometric Mean
-    Monthly and Yearly Volatility
-    Downside Deveation
-    Beta
-    Annual Alpha
-    R-Squared
-    MAR Ratio
-    Treynor Ratio
-    3-Year Calmar Ratio
-    Yearly Active Returns
-    Tracking Error
-    Information Ratio
-    Skewness
-    Kurtosis
-    Analytical VaR
-    Historical VaR
-    Conditional VaR
-    Upside Capture Ratio
-    Downside Capture Ratio
-    Total Capture Ratio
-    Top 5 Drawdowns Portfolio and Benchmark
+        Month and Year Returns Arithmetic Mean
+        Month and Year Returns Geometric Mean
+        Monthly and Yearly Volatility
+        Downside Deveation
+        Beta
+        Annual Alpha
+        R-Squared
+        MAR Ratio
+        Treynor Ratio
+        3-Year Calmar Ratio
+        Yearly Active Returns
+        Tracking Error
+        Information Ratio
+        Skewness
+        Kurtosis
+        Analytical VaR
+        Historical VaR
+        Conditional VaR
+        Upside Capture Ratio
+        Downside Capture Ratio
+        Total Capture Ratio
+        Top 5 Drawdowns Portfolio and Benchmark
     * Level 3: All Statistics
     
 """

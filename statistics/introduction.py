@@ -12,9 +12,9 @@ st.markdown(
     """
     ### Types of Analysis
     * Level 0: Summary Statistics
-        Initial and Final Equity
-        CAGR
-        Annual Volatility
+        - Initial and Final Equity
+        - CAGR
+        - Annual Volatility
         Cumulative Returns
         Best and Worst Year
         Max Drawdown

@@ -10,23 +10,23 @@ st.markdown("""**👈 Select a tool from the sidebar** """)
 
 st.markdown(
     """
-    ### Types of Analysis
+    ### Levels of Analysis
     * Level 0: Summary Statistics
         - Initial and Final Equity
         - CAGR
         - Annual Volatility
-        Cumulative Returns
-        Best and Worst Year
-        Max Drawdown
-        Annual Sharpe Ratio
-        Annual Sortino Ratio
-        Market Correlation
-        Equity Curve
-        Drawdown Curve
-        Account Returns
-        Yearly Returns
-        Monthly Returns Heatmap
-        Monthly Active Returns Heatmap
+        - Cumulative Returns
+        - Best and Worst Year
+        - Max Drawdown
+        - Annual Sharpe Ratio
+        - Annual Sortino Ratio
+        - Market Correlation
+        - Equity Curve
+        - Drawdown Curve
+        - Account Returns
+        - Yearly Returns
+        - Monthly Returns Heatmap
+        - Monthly Active Returns Heatmap
     * Level 1: Trade Statistics
         Number of Trades
         Wins

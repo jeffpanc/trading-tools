@@ -1,10 +1,22 @@
 
+# to run the app: enter the command at your terminal window in the same directory as the script you created. Multi-page requires a pages directory with the additional pages.
+#     cd Dropbox/Python/Finance
+#     streamlit run Monte_Carlo_Tools.py
 
+# import the necessary libraries.
 import streamlit as st
 
 
+
+# configure the page
+st.set_page_config(
+    page_title="Monte Carlo Analysis",
+    page_icon="🎰",
+    layout="wide",
+    initial_sidebar_state="expanded")
+
 # set the title of the app, add a brief description, and set up the select boxes.
-st.header("Monte Carlo Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')
+st.header("🎰  Monte Carlo Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')
 st.write('An application to run Monte Carlo analysis tools on trading outcomes for quantitative decision making.')
 st.markdown("""**👈 Select a tool from the sidebar** """)
 

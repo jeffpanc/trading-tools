@@ -330,7 +330,7 @@ def reports_output(metric_level, portfolio_df, trades_df, bmark_df, bmark_name, 
         print()
         print('\033[1;4m' + "System Metrics:" + '\033[0m', f"{start:%B %d, %Y}", "to", f"{end:%B %d, %Y}")
         print()
-        display(L2.style.hide(axis="index"))    
+        display(L2.style.hide(axis="index"))
         print()
         print()
         print('Model Top 5 Drawdowns')

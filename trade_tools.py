@@ -2,8 +2,8 @@ import streamlit as st
 
 # configure the page
 st.set_page_config(
-    page_title="Toolset For Algorithmic Trading",
-    page_icon="🎰",
+    # page_title="Toolset For Algorithmic Trading",
+    # page_icon="🎰",
     layout="wide",
     initial_sidebar_state="expanded")
 
@@ -15,19 +15,19 @@ st.markdown("""**👈 Select a tool from the sidebar** """)
 st.markdown(
     """
     ### Introduction
-    This set of tools is useful for analyzing trading outcomes.  It can be used on trading account or backtest data. 
+    This set of tools is useful for analyzing trading and testing outcomes.  It can be used on trading account or backtest data. 
     It currently provides Monte Carlo testing of trading outcomes and account sizing.  Also, a set of trading statistics.
     """
 )
 
 
-MC_intro = st.Page("MC/MC_intro.py", title="Monte Carlo Introduction", icon="😊", default=True)
+MC_intro = st.Page("MC/MC_intro.py", title="Introduction", icon="😊", default=True)
 MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Trades Analysis", icon="💸")
 # MC_robustness_testing = st.Page("MC/MC_robustness_testing.py", title="Robustness Testing", icon="💪")
 # MC_cone_analysis = st.Page("MC/MC_cone_analysis.py", title="System Monitor", icon="👀")
 
 
-introduction = st.Page("statistics/introduction.py", title="Statistics Introduction", icon="📊")
+introduction = st.Page("statistics/introduction.py", title="Introduction", icon="📊")
 # summary = st.Page("statistics/summary.py", title="Summary Stats", icon="✍️")
 # trades = st.Page("statistics/trades.py", title="Trade Stats", icon="💸")
 # system = st.Page("statistics/system.py", title="System Stats", icon="⚙️")

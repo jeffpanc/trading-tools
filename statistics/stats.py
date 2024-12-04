@@ -101,7 +101,7 @@ with st.form('User Input'):
             st.write('')
 
             # Account returns
-            fig = px.line(account['returns'],  x=accounts.index, y=['returns'], title="Account Returns (%)", labels={'value': 'Percent', 'index':'Year', 'variable': ''}, color_discrete_map={
+            fig = px.line(account['returns'],  x=account.index, y=['returns'], title="Account Returns (%)", labels={'value': 'Percent', 'index':'Year', 'variable': ''}, color_discrete_map={
                  "returns": "blue"
              } )
             st.plotly_chart(fig)

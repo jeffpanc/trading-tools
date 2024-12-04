@@ -75,7 +75,7 @@ with st.form('User Input'):
             st.dataframe(L0)
             st.write('')
 
-            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves (Log Scale)", labels={'value': 'US$', 'index':'Year','variable': ''}, log_x=True) 
+            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves (Log Scale)", labels={'value': 'US$', 'index':'Year','variable': ''}, log_y=True) 
             newnames = {'balance':'Model', 'wide_variable_1': selected_bmark}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],

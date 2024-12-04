@@ -33,7 +33,7 @@ stats = st.Page("statistics/stats.py", title="Statistical Analysis", icon="âœ”ï¸
 
 pg = st.navigation(
     {
-        "Algorithmic Trading Tools": [tools]
+        "Algorithmic Trading Tools": [tools],
         "Monte Carlo Tools": [MC_intro, MC_trades_analysis],
         "Statistical Analysis": [introduction, stats]
     }

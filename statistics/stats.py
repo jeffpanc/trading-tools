@@ -70,7 +70,7 @@ with st.form('User Input'):
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)
 
-            fig = px.line(portfolio_df,  x=portfolio_df.index, y=['balance', bmark_df['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}) 
+            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}) 
             newnames = {'balance':'Model', 'wide_variable_1': bmark_name}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],

@@ -107,7 +107,18 @@ with st.form('User Input'):
             st.plotly_chart(fig)
             st.write('')
 
+            # Account returns distribution
+            fig = px.histogram(account['returns'],  x=['returns'], title="Account Returns Distribution (%)", nbins=250, labels={'value': '% Return', 'variable': ''}, color_discrete_map={
+                 "returns": "blue"
+             }  )
+            fig.update_layout(
+                yaxis_title_text='Count', # yaxis label
+            )
+        
+            st.plotly_chart(fig)
+            st.write('')
 
+            
         elif selected_level == 1:
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)

@@ -4,7 +4,7 @@ import streamlit as st
 
 
 # set the title of the app, add a brief description, and set up the select boxes.
-st.header("Algorithmic Trading Tools", help='Author: Jeff Pancottine, December 2024.', divider = 'rainbow')
+st.header("🛠️ Algorithmic Trading Tools", help='Author: Jeff Pancottine, December 2024.', divider = 'rainbow')
 st.write('A set of applications to analyze trading outcomes for quantitative decision making.')
 st.markdown("""**👈 Select a tool from the sidebar** """)
 

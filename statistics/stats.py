@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ### Import Libraries
-
-# In[1]:
-
-
 # path for custom libraries to import
 import sys
 sys.path.append('/Users/jeff/Dropbox/Trading/Python/src/JP_Tools')
@@ -18,9 +10,20 @@ import plots_lib
 import reports_lib
 import matplotlib.ticker as mtick
 import matplotlib.pyplot as plt
+import plotly.express as px
+import numpy as np
+import warnings
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from IPython.display import display
+from dateutil import relativedelta
+from datetime import datetime
+from scipy.stats import bootstrap
 
+# there is some code within pyfolio, empyrical, pandas and matplotlib that has deprecated calls 
+# - this just supresses the warnings from showing
+warnings.filterwarnings('ignore') 
 
-# In[2]:
 
 
 # level selection data structure
@@ -30,9 +33,6 @@ levels = [
     2,
     3,
 ]
-
-
-# In[ ]:
 
 
 # set the title of the app, add a brief description, and set up the select boxes.
@@ -69,6 +69,15 @@ with st.form('User Input'):
         if selected_level == 0:
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)
+
+            fig = px.line(portfolio_df,  x=portfolio_df.index, y=['balance', bmark_df['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}) 
+            newnames = {'balance':'Model', 'wide_variable_1': bmark_name}
+            fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
+                                      legendgroup = newnames[t.name],
+                                      hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
+
+    fig.show()
+
         elif selected_level == 1:
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)
@@ -88,10 +97,6 @@ with st.form('User Input'):
             st.dataframe(L2)
         
         
-
-
-# In[ ]:
-
 
 
 

@@ -93,7 +93,7 @@ with st.form('User Input'):
             active_df.index = account.index
 
             st.write('')
-            st.write("__Performance Summary:__", f"{account.index[0]:%B %d, %Y}" , "  ", "to","  ", f"{account.index[-1]:%B %d, %Y}")
+            st.write("<center>__Performance Summary:__</center>", f"{account.index[0]:%B %d, %Y}" , "  ", "to","  ", f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             # L0 stats table

@@ -68,7 +68,7 @@ with st.form('User Input'):
 
         if selected_level == 0:
             st.write('')
-            st.write('\033[1;4m' + "Performance Summary:" + '\033[0m', f"{account.index[0]:%B %d, %Y}", "to", f"{account.index[-1]:%B %d, %Y}")
+            st.write("Performance Summary: " +  f"{account.index[0]:%B %d, %Y}" + " to " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)

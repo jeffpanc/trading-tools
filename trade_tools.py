@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="expanded")
 
 # set the title of the app, add a brief description, and set up the select boxes.
-# st.header("🎰  Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, November 2024.', divider = 'rainbow')
+# st.header("Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, November 2024.', divider = 'rainbow')
 # st.write('Applications for quantitative decision making.')
 # st.markdown("""**👈 Select a tool from the sidebar** """)
 
@@ -22,21 +22,18 @@ st.set_page_config(
 
 
 MC_intro = st.Page("MC/MC_intro.py", title="Introduction", icon="✔️", default=True)
-MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Trades Analysis", icon="✔️")
+MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Monte Carlo Trading Analysis", icon="✔️")
 # MC_robustness_testing = st.Page("MC/MC_robustness_testing.py", title="Robustness Testing", icon="✔️")
 # MC_cone_analysis = st.Page("MC/MC_cone_analysis.py", title="System Monitor", icon="✔️")
 
 
 introduction = st.Page("statistics/introduction.py", title="Introduction", icon="✔️")
-# summary = st.Page("statistics/summary.py", title="Summary Stats", icon="✔️")
-# trades = st.Page("statistics/trades.py", title="Trade Stats", icon="✔️")
-# system = st.Page("statistics/system.py", title="System Stats", icon="✔️")
-# all_stats = st.Page("statistics/all_stats.py", title="All Stats", icon="✔️")
+stats = st.Page("statistics/stats.py", title="Statistical Analysis", icon="✔️")
 
 pg = st.navigation(
     {
         "Monte Carlo Tools": [MC_intro, MC_trades_analysis],
-        "Statistics": [introduction]
+        "Statistics": [introduction, stats]
     }
 )
 

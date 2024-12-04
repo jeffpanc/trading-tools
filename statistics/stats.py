@@ -205,7 +205,7 @@ with st.form('User Input'):
         
             # Display the top 5 drawdowns
             st.write('')
-            st.write('Model Top 5 Drawdowns')
+            st.write('__Model Top 5 Drawdowns__')
             st.write('')
             st.dataframe(drawdowns_df)
 

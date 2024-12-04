@@ -68,7 +68,7 @@ with st.form('User Input'):
 
         if selected_level == 0:
             st.write('')
-            st.write("Performance Summary: " +  f"{account.index[0]:%B %d, %Y}" + " to " f"{account.index[-1]:%B %d, %Y}")
+            st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + " to " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
@@ -81,6 +81,16 @@ with st.form('User Input'):
                                       legendgroup = newnames[t.name],
                                       hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
             st.plotly_chart(fig)
+            st.write('')
+    
+            fig = px.line(account,  x=account.index, y=['DD', bmark['DD']], title="Drawdown Curves", labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
+            newnames = {'DD':'Model', 'wide_variable_1': selected_bmark}
+            fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
+                                      legendgroup = newnames[t.name],
+                                      hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
+            st.plotly_chart(fig)
+            st.write('')
+    
 
         elif selected_level == 1:
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)

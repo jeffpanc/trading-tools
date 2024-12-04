@@ -24,21 +24,21 @@ st.markdown(
 """
     ### Levels and types of statistical analysis.
     
-    **Level 0 (Summary):
+    - **Level 0 (Summary):**
     Initial Balance, Final Balance, CAGR, StDev, Best Year, Worst Year, Rate of Return, Max Drawdown, Sharpe Ratio, Sortino Ratio, 
     Market Correlation, Equity Curve Chart, Yearly Profit Chart, Drawdown Chart.
     
-    Level 1 (Details - Trades):
+    - **Level 1 (Details - Trades):**
     Summary +  total trades, winning trades, losing trades, % wins, win/loss ratio, max win trade, max loss trade, max consecutive wins, 
     max consecutive losses, total commisions, total slippage, avg drawdown, avg trade profit, avg win, avg loss, profit factor, expectancy.
     
-    Level 2 (Details - System):
+    - **Level 2 (Details - System):**
     Summary + Arithmetic Mean (monthly), Arithmetic Mean (annualized), Geometric Mean (monthly), Geometric Mean (annualized), 
     Standard Deviation (monthly), MAR Ratio, Standard Deviation (annualized), Downside Deviation (monthly), Beta(*), Alpha (annualized), R2, 
     Treynor Ratio (%), Calmar Ratio, Active Return, Tracking Error, Information Ratio, Skewness, Excess Kurtosis, Historical Value-at-Risk (5%), 
     Analytical Value-at-Risk (5%), Conditional Value-at-Risk (5%), Upside Capture Ratio (%), Downside Capture Ratio (%)
     
-    Level 3 (All Metrics)
+    - **Level 3 (All Metrics)**
 """
 )
 

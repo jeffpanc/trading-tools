@@ -68,14 +68,17 @@ with st.form('User Input'):
 
         if selected_level == 0:
             st.write('')
-            st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + " to " f"{account.index[-1]:%B %d, %Y}")
+            st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)
             st.write('')
 
-            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves (Log Scale)", labels={'value': 'US$', 'index':'Year','variable': ''}, log_y=True) 
+            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves (Log Scale)", labels={'value': 'US$', 'index':'Year','variable': ''}, log_y=True, color_discrete_map={
+                 "balance": "blue",
+                 "bmark['balance']": "goldenrod"
+             }) 
             newnames = {'balance':'Model', 'wide_variable_1': selected_bmark}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],

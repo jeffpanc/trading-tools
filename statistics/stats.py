@@ -71,7 +71,7 @@ with st.form('User Input'):
             st.dataframe(L0)
 
             fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}) 
-            newnames = {'balance':'Model', 'wide_variable_1': bmark_name}
+            newnames = {'balance':'Model', 'wide_variable_1': selected_bmark}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],
                                       hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))

@@ -72,7 +72,7 @@ def make_L0_metrics(portfolio_df, bmark_df, bmark_name, periodicity, Rf):
     # annualized StDev
     if periodicity == 'M':
         L0_metrics.loc[len(L0_metrics.index)] = ['Annualized Standard Deviation', "{:.2%}".format(statistics_lib.annual_sd(portfolio_df.returns, 'M')), "{:.2%}".format(statistics_lib.annual_sd(bmark_df.returns, 'M'))]
-    else: L0_metrics.loc[len(L0_metrics.index)] = ['Annualized Standard Deviation', "{:.2%}".format(statistics_lib.annual_sd(bmark_df.returns, 'D')), "{:.2%}".format(statistics_lib.annual_sd(bmark_df.returns, 'D'))]
+    else: L0_metrics.loc[len(L0_metrics.index)] = ['Annualized Standard Deviation', "{:.2%}".format(statistics_lib.annual_sd(portfolio_df.returns, 'D')), "{:.2%}".format(statistics_lib.annual_sd(bmark_df.returns, 'D'))]
     
     # cumulative return (RoR)
     L0_metrics.loc[len(L0_metrics.index)] = ['Cumulative Return', "{:.2%}".format(statistics_lib.RoR(portfolio_df.balance[0], portfolio_df.balance[-1])), "{:.2%}".format(statistics_lib.RoR(bmark_df.balance[0], bmark_df.balance[-1]))]

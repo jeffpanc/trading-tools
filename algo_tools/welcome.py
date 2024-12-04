@@ -41,7 +41,7 @@ st.markdown(
     - Testing if a trading strategy is broken
 
 
-    ### Want to learn more?
+    ##### Want to learn more?
     - https://www.investopedia.com/terms/m/montecarlosimulation.asp
     - https://en.wikipedia.org/wiki/Monte_Carlo_method
     - https://towardsdatascience.com/monte-carlo-simulation-a-practical-guide-85da45597f0e

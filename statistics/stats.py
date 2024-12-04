@@ -66,7 +66,12 @@ with st.form('User Input'):
         bmark.set_index('date', drop=True, inplace=True)
         bmark.index = pd.to_datetime(bmark.index)
 
-        if selected_level == 0 or selected_level == 1 or selected_level == 2 or selected_level == 3:
+        if selected_level == 0 or selected_level == 1 or selected_level == 2 or selected_level == 3:       # always print summary
+            # create active returns for heatmap
+            active_df = pd.DataFrame()
+            active_df['returns'] = account['returns'] - bmark['returns']
+            active_df.index = account.index
+
             st.write('')
             st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
@@ -119,6 +124,10 @@ with st.form('User Input'):
 
             
         if selected_level == 1 or selected_level == 3:
+            st.write('')
+            st.write("Trade Metrics:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
+            st.write('')
+
             L1 = reports_lib.make_L1_metrics(trades)
             st.dataframe(L1)
 
@@ -139,11 +148,67 @@ with st.form('User Input'):
             st.plotly_chart(fig)
             st.write('')
 
+        
         if selected_level == 2 or selected_level == 3:
+            st.write('')
+            st.write("System Metrics:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
+            st.write('')
+
             L2 = reports_lib.make_L2_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L2)
         
+            drawdowns_stats = []
+            start = 0
+
+            # Top 5 drawdowns
+            for i in range(1, len(account)):
+                if account.DD.iloc[i] < 0 and account.DD.iloc[i-1] == 0:               # find the peak
+                    peak_date = account.index[i]
+                    start = i
+                elif account.DD.iloc[i] == 0 and account.DD.iloc[i-1] < 0:             # find the recovery
+                    record = account[account.DD == account.DD.iloc[start:i].min()]
+                    valley_date = record.index[0]
+                    recovery_date = account.index[i]
+                    r1 = relativedelta.relativedelta(valley_date, peak_date) 
+                    r2 = relativedelta.relativedelta(recovery_date, valley_date)
+                    drawdowns_stats.append({
+                        'Drawdown': account.DD.iloc[start:i].min(),
+                        'Start Date': datetime.strftime(peak_date, '%Y-%m'),
+                        'End Date': datetime.strftime(valley_date, '%Y-%m'),
+                        'Drawdown (Months)': r1.months + 1 + (12 * r1.years),          # add 1 for current month
+                        'Recovery Date': datetime.strftime(recovery_date, '%Y-%m'),
+                        'Recovery (Months)': r2.months + (12 * r2.years),
+                        'Underwater (Months)': i - start + 1,
+                    })
+                    start = i
+                elif i == len(account) - 1 and account.DD.iloc[i] < 0:                 # handle ongoing drawdown
+                    record2 = account[account.DD == account.DD.iloc[start:].min()]
+                    valley_date = record2.index[0]
+                    peak_date = account.index[start]
+                    r3 = relativedelta.relativedelta(valley_date, peak_date)
+                    drawdowns_stats.append({
+                        'Drawdown': account.DD.iloc[start:].min(),
+                        'Start Date': datetime.strftime(peak_date, '%Y-%m'),
+                        'End Date': datetime.strftime(valley_date, '%Y-%m'),
+                        'Drawdown (Months)': r3.months + 1 + (12 * r3.years),          # add 1 for current month
+                        'Recovery Date': 'On Going',       # Ongoing drawdown
+                        'Recovery (Months)': 'On Going',   # Ongoing drawdown
+                        'Underwater (Months)': 'On Going', # Ongoing drawdown
+                    })
         
+            # Sort drawdowns by depth
+            drawdowns_stats = sorted(drawdowns_stats, key=lambda x: x['Drawdown'])[:5]
+               
+            # Convert to DataFrame for easier viewing/manipulation
+            drawdowns_df = pd.DataFrame(drawdowns_stats)
+            drawdowns_df.index = drawdowns_df.index + 1
+        
+            # Display the top 5 drawdowns
+            st.write('')
+            st.write('Model Top 5 Drawdowns')
+            st.write('')
+            st.dataframe(drawdowns_df)
+
 
 
 

@@ -16,12 +16,12 @@ import streamlit as st
 #     initial_sidebar_state="expanded")
 
 # set the title of the app, add a brief description, and set up the select boxes.
-st.header("Statistical Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')
+st.header("📊 Statistical Analysis Toolset For Algorithmic Trading", help='Author: Jeff Pancottine, May 2024.', divider = 'rainbow')
 st.write('An application to run statistical analysis tools on account and trading outcomes for quantitative decision making.')
 st.markdown("""**👈 Select a tool from the sidebar** """)
 
-# st.markdown(
-    """
+st.markdown(
+"""
     ### Levels and types of statistical analysis.
     
     **Level 0 (Summary):

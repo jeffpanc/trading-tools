@@ -178,7 +178,7 @@ with st.form('User Input'):
                         'Drawdown (Months)': r1.months + 1 + (12 * r1.years),          # add 1 for current month
                         'Recovery Date': datetime.strftime(recovery_date, '%Y-%m'),
                         'Recovery (Months)': r2.months + (12 * r2.years),
-                        'Underwater (Months)': (i - start + 1)/30,
+                        'Underwater (Months)': f"{i - start + 1)/30:.2f}",
                     })
                     start = i
                 elif i == len(account) - 1 and account.DD.iloc[i] < 0:                 # handle ongoing drawdown

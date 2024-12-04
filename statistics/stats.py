@@ -68,7 +68,7 @@ with st.form('User Input'):
 
         if selected_level == 0 or selected_level == 1 or selected_level == 2 or selected_level == 3:
             st.write('')
-            st.write("**Performance Summary:   **" +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
+            st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             # L0 stats table
@@ -118,7 +118,7 @@ with st.form('User Input'):
             st.write('')
 
             
-        elif selected_level == 1 or selected_level == 3:
+        if selected_level == 1 or selected_level == 3:
             L1 = reports_lib.make_L1_metrics(trades)
             st.dataframe(L1)
 
@@ -139,7 +139,7 @@ with st.form('User Input'):
             st.plotly_chart(fig)
             st.write('')
 
-        elif selected_level == 2 or selected_level == 3:
+        if selected_level == 2 or selected_level == 3:
             L2 = reports_lib.make_L2_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L2)
         

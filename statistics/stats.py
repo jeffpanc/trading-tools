@@ -71,13 +71,15 @@ with st.form('User Input'):
             st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
+            # L0 stats table
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)
             st.write('')
 
+            # Equity curves
             fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves (Log Scale)", labels={'value': 'US$', 'index':'Year','variable': ''}, log_y=True, color_discrete_map={
                  "balance": "blue",
-                 "bmark['balance']": "goldenrod"
+                 "bmark['balance']": "orange"
              }) 
             newnames = {'balance':'Model', 'wide_variable_1': selected_bmark}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
@@ -86,9 +88,10 @@ with st.form('User Input'):
             st.plotly_chart(fig)
             st.write('')
     
+            # Drawdown curves
             fig = px.line(account,  x=account.index, y=['DD', bmark['DD']], title="Drawdown Curves", labels={'value': 'Percent', 'index':'Year', 'variable': ''}, color_discrete_map={
                  "DD": "blue",
-                 "bmark['DD']": "goldenrod"
+                 "bmark['DD']": "orange"
              } )
             newnames = {'DD':'Model', 'wide_variable_1': selected_bmark}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
@@ -96,7 +99,14 @@ with st.form('User Input'):
                                       hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
             st.plotly_chart(fig)
             st.write('')
-    
+
+            # Account returns
+            fig = px.line(account['returns'],  x=accounts.index, y=['returns'], title="Account Returns (%)", labels={'value': 'Percent', 'index':'Year', 'variable': ''}, color_discrete_map={
+                 "returns": "blue"
+             } )
+            st.plotly_chart(fig)
+            st.write('')
+
 
         elif selected_level == 1:
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)

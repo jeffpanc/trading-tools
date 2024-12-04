@@ -86,7 +86,10 @@ with st.form('User Input'):
             st.plotly_chart(fig)
             st.write('')
     
-            fig = px.line(account,  x=account.index, y=['DD', bmark['DD']], title="Drawdown Curves", labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
+            fig = px.line(account,  x=account.index, y=['DD', bmark['DD']], title="Drawdown Curves", labels={'value': 'Percent', 'index':'Year', 'variable': ''}, color_discrete_map={
+                 "DD": "blue",
+                 "bmark['DD']": "goldenrod"
+             } )
             newnames = {'DD':'Model', 'wide_variable_1': selected_bmark}
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],

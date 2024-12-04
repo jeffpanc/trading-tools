@@ -48,8 +48,8 @@ with st.form('User Input'):
     selected_period = st.sidebar.text_input("Select the periodicity:", value="D", max_chars=1, help=' M=month, D=Day')
     selected_bmark = st.sidebar.text_input("Select the benchmark name:", value="SPY", max_chars=4, help='Provide ticker (e.g. SPY, QQQ, etc.)')
     selected_trades_file = st.sidebar.file_uploader("Choose a .csv file for trades data:", help='File header and field format is: | date (trade end date) | returns (trade $ return) | return_pct (trade return percent) |. Best to have 100+ trades.')
-    selected_account_file = st.sidebar.file_uploader("Choose a .csv file for account data:", help='File header and field format is: | date (trade end date) | returns (trade $ return) | return_pct (trade return percent) |. Best to have 100+ trades.')
-    selected_bmark_file = st.sidebar.file_uploader("Choose a .csv file for benchmark data:", help='File header and field format is: | date (trade end date) | returns (trade $ return) | return_pct (trade return percent) |. Best to have 100+ trades.')
+    selected_account_file = st.sidebar.file_uploader("Choose a .csv file for account data:", help='File header and field format is: | date | return_pct (return percent) | cum_return_pct (cumulative return percent) | returns ($ return) | balance | DD (drawdown percent)'
+    selected_bmark_file = st.sidebar.file_uploader("Choose a .csv file for benchmark data:", help='File header and field format is: | date | return_pct (return percent) | cum_return_pct (cumulative return percent) | returns ($ return) | balance | DD (drawdown percent)'
     submit = st.form_submit_button('Start Analysis')
 
     if submit:

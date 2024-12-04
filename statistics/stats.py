@@ -66,9 +66,9 @@ with st.form('User Input'):
         bmark.set_index('date', drop=True, inplace=True)
         bmark.index = pd.to_datetime(bmark.index)
 
-        if selected_level == 0:
+        if selected_level == 0 or selected_level == 1 or selected_level == 2 or selected_level == 3:
             st.write('')
-            st.write("Performance Summary:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
+            st.write("**Performance Summary:   **" +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             # L0 stats table
@@ -113,27 +113,33 @@ with st.form('User Input'):
              }  )
             fig.update_layout(
                 yaxis_title_text='Count', # yaxis label
-            )
-        
+            )        
             st.plotly_chart(fig)
             st.write('')
 
             
-        elif selected_level == 1:
-            L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
-            st.dataframe(L0)
+        elif selected_level == 1 or selected_level == 3:
             L1 = reports_lib.make_L1_metrics(trades)
             st.dataframe(L1)
-        elif selected_level == 2:
-            L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
-            st.dataframe(L0)
-            L2 = reports_lib.make_L2_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
-            st.dataframe(L2)
-        elif selected_level == 3:
-            L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
-            st.dataframe(L0)
-            L1 = reports_lib.make_L1_metrics(trades)
-            st.dataframe(L1)
+
+            # Trade returns
+            fig = px.line(trades['trade_ret_pct'],  x=trades.index, y=['trade_ret_pct'], title="Trade Returns (%)", labels={'value': 'Percent', 'index':'Trade Number', 'variable': ''}, color_discrete_map={
+                 "trade_ret_pct": "blue"
+             }   )
+            st.plotly_chart(fig)
+            st.write('')
+       
+            # Trade returns distribution        
+            fig = px.histogram(trades['trade_ret_pct'],  x=['trade_ret_pct'], title="Trade Returns Distribution (%)", nbins=100, labels={'value': '% Return', 'variable': ''}, color_discrete_map={
+                 "trade_ret_pct": "blue"
+             }   )            
+            fig.update_layout(
+                yaxis_title_text='Count', # yaxis label
+            )        
+            st.plotly_chart(fig)
+            st.write('')
+
+        elif selected_level == 2 or selected_level == 3:
             L2 = reports_lib.make_L2_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L2)
         

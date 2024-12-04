@@ -26,14 +26,16 @@ MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Monte Carlo Trad
 # MC_robustness_testing = st.Page("MC/MC_robustness_testing.py", title="Robustness Testing", icon="✔️")
 # MC_cone_analysis = st.Page("MC/MC_cone_analysis.py", title="System Monitor", icon="✔️")
 
+tools = st.Page("algo_tools/trades.py", title="Welcome to Algorithmic Trading Tools")
 
 introduction = st.Page("statistics/introduction.py", title="Introduction", icon="✔️")
 stats = st.Page("statistics/stats.py", title="Statistical Analysis", icon="✔️")
 
 pg = st.navigation(
     {
+        "Algorithmic Trading Tools": [tools]
         "Monte Carlo Tools": [MC_intro, MC_trades_analysis],
-        "Statistics": [introduction, stats]
+        "Statistical Analysis": [introduction, stats]
     }
 )
 

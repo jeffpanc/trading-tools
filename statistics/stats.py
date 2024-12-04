@@ -45,7 +45,7 @@ st.sidebar.header("Parameters", divider = 'rainbow')
 with st.form('User Input'):
     selected_level = st.sidebar.number_input("Select the level of statistics to use:", min_value=0, max_value=3, value=0, step=1, format="%i", help='See the intro page for level contents.')    
     selected_Rf = st.sidebar.number_input("Select the risk free rate of return percentage:", min_value=0.00, max_value=0.10, value=0.00, step=0.01, format="%.2f", help='Typically the short-term, 3-month T-Bill rate.')
-    selected_period = st.sidebar.text_input("Select the periodicity:", value="D", max_chars=1, help=' M=month, D=Day')
+    selected_periodicity = st.sidebar.text_input("Select the periodicity:", value="D", max_chars=1, help=' M=month, D=Day')
     selected_bmark = st.sidebar.text_input("Select the benchmark name:", value="SPY", max_chars=4, help='Provide ticker (e.g. SPY, QQQ, etc.)')
     selected_trades_file = st.sidebar.file_uploader("Choose a .csv file for trades data:", help='File header and field format is: | date (trade end date) | returns (trade $ return) | return_pct (trade return percent) |. Best to have 100+ trades.')
     selected_account_file = st.sidebar.file_uploader("Choose a .csv file for account data:", help='File header and field format is: | date | return_pct (return percent) | cum_return_pct (cumulative return percent) | returns ($ return) | balance | DD (drawdown percent)')

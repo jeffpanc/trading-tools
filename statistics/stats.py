@@ -67,8 +67,13 @@ with st.form('User Input'):
         bmark.index = pd.to_datetime(bmark.index)
 
         if selected_level == 0:
+            st.write('')
+            st.write('\033[1;4m' + "Performance Summary:" + '\033[0m', f"{account.index[0]:%B %d, %Y}", "to", f"{account.index[-1]:%B %d, %Y}")
+            st.write('')
+
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)
             st.dataframe(L0)
+            st.write('')
 
             fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}) 
             newnames = {'balance':'Model', 'wide_variable_1': selected_bmark}

@@ -21,21 +21,21 @@ st.set_page_config(
 # )
 
 
-MC_intro = st.Page("MC/MC_intro.py", title="Introduction", icon="✔️")
-MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Monte Carlo Trading Analysis", icon="✔️")
+MC_intro = st.Page("MC/MC_intro.py", title="Introduction")
+MC_trades_analysis = st.Page("MC/MC_trades_analysis.py", title="Monte Carlo Trading Analysis")
 # MC_robustness_testing = st.Page("MC/MC_robustness_testing.py", title="Robustness Testing", icon="✔️")
 # MC_cone_analysis = st.Page("MC/MC_cone_analysis.py", title="System Monitor", icon="✔️")
 
 tools = st.Page("algo_tools/trades.py", title="Welcome", default=True)
 
-introduction = st.Page("statistics/introduction.py", title="Introduction", icon="✔️")
-stats = st.Page("statistics/stats.py", title="Statistical Analysis", icon="✔️")
+#introduction = st.Page("statistics/introduction.py", title="Introduction", icon="✔️")
+stats = st.Page("statistics/stats.py", title="Statistical Analysis")
 
 pg = st.navigation(
     {
         "Algorithmic Trading Tools": [tools],
         "Monte Carlo": [MC_intro, MC_trades_analysis],
-        "Statistics": [introduction, stats]
+        "Statistics": [stats]
     }
 )
 

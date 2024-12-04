@@ -75,8 +75,7 @@ with st.form('User Input'):
             fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],
                                       hovertemplate = t.hovertemplate.replace(t.name, newnames[t.name])))
-
-    fig.show()
+            st.plotly_chart(fig)
 
         elif selected_level == 1:
             L0 = reports_lib.make_L0_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)

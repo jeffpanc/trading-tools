@@ -10,6 +10,18 @@ st.markdown("""**👈 Select a tool from the sidebar** """)
 
 st.markdown(
     """
+    ### Welcome
+    This is an on-going effort to provide analysis tools for algorithmic traders.  So far, baseline Monte Carlo simulation and statistical analysis of trade and account outcomes are available.  These can be used on backtest results or actual 
+    trading results.  Next to come is:
+    - Testing the robustness of a trading strategy with Monte Carlo
+    - Testing if a trading strategy is broken using Monte Carlo
+    - Further refinement of statistics
+"""
+)
+
+
+st.markdown(
+    """
     ### Monte Carlo Introduction
     Monte Carlo methods are a broad class of computational algorithms that rely on repeated random sampling to obtain numerical results. Their essential idea is using randomness to solve problems that might be
     deterministic in principle. Monte Carlo methods are mainly used in three distinct problem classes: optimization, numerical integration, and generating draws from a probability distribution.
@@ -41,7 +53,7 @@ st.markdown(
     - Testing if a trading strategy is broken
 
 
-    ##### Want to learn more?
+    **Want to learn more?**
     - https://www.investopedia.com/terms/m/montecarlosimulation.asp
     - https://en.wikipedia.org/wiki/Monte_Carlo_method
     - https://towardsdatascience.com/monte-carlo-simulation-a-practical-guide-85da45597f0e
@@ -53,7 +65,7 @@ st.markdown(
 
 st.markdown(
 """
-    ### Levels and types of statistical analysis.
+    ### Statistical Analysis Levels and Types
     
     - **Level 0 (Summary):**
     Initial Balance, Final Balance, CAGR, StDev, Best Year, Worst Year, Rate of Return, Max Drawdown, Sharpe Ratio, Sortino Ratio, 

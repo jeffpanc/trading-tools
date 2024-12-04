@@ -73,7 +73,7 @@ with st.form('User Input'):
             active_df.index = account.index
 
             st.write('')
-            st.write("__Performance Summary:  __", f"{account.index[0]:%B %d, %Y}" , "  ", "to","  ", f"{account.index[-1]:%B %d, %Y}")
+            st.write("__Performance Summary:__", f"{account.index[0]:%B %d, %Y}" , "  ", "to","  ", f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             # L0 stats table
@@ -125,7 +125,7 @@ with st.form('User Input'):
             
         if selected_level == 1 or selected_level == 3:
             st.write('')
-            st.write("Trade Metrics:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
+            st.write("__Trade Metrics:__   " ,  f"{account.index[0]:%B %d, %Y}" , "  to  ", f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             L1 = reports_lib.make_L1_metrics(trades)
@@ -151,7 +151,7 @@ with st.form('User Input'):
         
         if selected_level == 2 or selected_level == 3:
             st.write('')
-            st.write("System Metrics:   " +  f"{account.index[0]:%B %d, %Y}" + "  to  " f"{account.index[-1]:%B %d, %Y}")
+            st.write("__System Metrics:__   " ,  f"{account.index[0]:%B %d, %Y}" , "  to  ", f"{account.index[-1]:%B %d, %Y}")
             st.write('')
 
             L2 = reports_lib.make_L2_metrics(account, bmark, selected_bmark, selected_periodicity, selected_Rf)

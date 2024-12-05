@@ -15,9 +15,9 @@ st.markdown(
     trading results.  
     
     **Please make sure to follow the .csv file formats.**
-    trades.csv -  | date (trade end date) | returns (trade $ return) | return_pct (trade return percent) | (Best to have 100+ trades)
-    account.csv - | date | return_pct (return percent) | cum_return_pct (cumulative return percent) | returns ($ return) | balance | DD (drawdown percent) |
-    benchmark.csv - | date | return_pct (return percent) | cum_return_pct (cumulative return percent) | returns ($ return) | balance | DD (drawdown percent) |
+    - trades.csv    date (trade end date)  returns (trade $ return)  return_pct (trade return percent)  Best to have 100+ trades
+    - account.csv   date  return_pct (return percent)  cum_return_pct (cumulative return percent)  returns ($ return)  balance  DD (drawdown percent) 
+    - benchmark.csv   date  return_pct (return percent)  cum_return_pct (cumulative return percent)  returns ($ return)  balance  DD (drawdown percent) 
     
     Next to come is:
     - Testing the robustness of a trading strategy with Monte Carlo

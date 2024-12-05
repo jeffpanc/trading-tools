@@ -8,18 +8,18 @@ st.header("🛠️ Algorithmic Trading Tools", help='Author: Jeff Pancottine, De
 st.write('A set of applications to analyze trading outcomes for quantitative decision making.')
 st.markdown("""**👈 Select a tool from the sidebar** """)
 
-st.markdown(
+st.write(
     """
     ### Welcome
     This is an on-going effort to provide analysis tools for algorithmic traders.  So far, baseline Monte Carlo trade simulation and statistical analysis of trade and account outcomes are available.  These can be used on backtest results or actual 
     trading results.  
     
     **Please make sure to follow the .csv file formats.**
-    - trades.csv    
+    - trades.csv:    
         date (trade end date),  returns (trade $ return),  return_pct (trade return percent),  Best to have 100+ trades.
-    - account.csv   
+    - account.csv:   
         date,  return_pct (return percent),  cum_return_pct (cumulative return percent),  returns ($ return),  balance,  DD (drawdown percent) 
-    - benchmark.csv   
+    - benchmark.csv:   
         date,  return_pct (return percent),  cum_return_pct (cumulative return percent),  returns ($ return),  balance,  DD (drawdown percent) 
     
     Next to come is:

@@ -106,18 +106,18 @@ with st.form('User Input'):
 
             # Account returns
             # Define colors based on y values
-            portfolio_pct_returns["color"] = portfolio_pct_returns.returns.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+            account["color"] = account.returns.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
         
-            fig = px.bar(portfolio_pct_returns,  x=portfolio_pct_returns.index, y=['returns'], color=portfolio_pct_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"}, title="Portfolio Account Returns (%)",  labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
+            fig = px.bar(account,  x=account.index, y=['returns'], color=account["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"}, title="Portfolio Account Returns (%)",  labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
             fig.update_layout(legend_title_text="Account Return Value")
             st.plotly_chart(fig)
             st.write('')
 
             # Account returns distribution
             # Define colors based on y values
-            portfolio_pct_returns["color"] = portfolio_pct_returns.returns.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+            account["color"] = account.returns.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
         
-            fig = px.histogram(portfolio_pct_returns,  x=['returns'], title="Portfolio Account Returns Distribution (%)", color=portfolio_pct_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=250, labels={'value': '% Return', 'variable': ''} )
+            fig = px.histogram(account,  x=['returns'], title="Portfolio Account Returns Distribution (%)", color=account["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=250, labels={'value': '% Return', 'variable': ''} )
             
             fig.update_layout(
                 yaxis_title_text='Count', # yaxis label
@@ -137,19 +137,19 @@ with st.form('User Input'):
 
             # Trade returns
             # Define colors based on y values
-            trades_returns["color"] = trades_returns.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+            trades["color"] = trades.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
             
             # Create scatter plot
-            fig = px.scatter(trades_returns, x=trades_returns.index, y=['trade_ret_pct'], color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},  title="Portfolio Trade Returns (%)", labels={'value': 'Percent', 'index':'Trade Number', 'variable': ''})
+            fig = px.scatter(trades, x=trades.index, y=['trade_ret_pct'], color=trades["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},  title="Portfolio Trade Returns (%)", labels={'value': 'Percent', 'index':'Trade Number', 'variable': ''})
             fig.update_layout(legend_title_text="Trade Return Value")
             st.plotly_chart(fig)
             st.write('')
        
             # Trade returns distribution        
             # Define colors based on y values
-            trades_returns["color"] = trades_returns.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+            trades["color"] = trades.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
         
-            fig = px.histogram(trades_returns,  x=['trade_ret_pct'], title="Portfolio Trade Returns Distribution (%)", color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=100, labels={'value': '% Return', 'variable': ''} )
+            fig = px.histogram(trades,  x=['trade_ret_pct'], title="Portfolio Trade Returns Distribution (%)", color=trades["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=100, labels={'value': '% Return', 'variable': ''} )
             
             fig.update_layout(
                 yaxis_title_text='Count', # yaxis label

@@ -62,7 +62,7 @@ def equity_curve_plot(portfolio_df, bmark_df, bmark_name):
 ############################################################################################################
 
 def drawdown_curve_plot(portfolio_DD, bmark_DD, bmark_name):
-    fig = px.line(portfolio_DD,  x=portfolio_DD.index, y=['DD', bmark_DD['DD']], title="Drawdown Curves", labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
+    fig = px.line(portfolio_DD,  x=portfolio_DD.index, y=[portfolio_DD['DD'], bmark_DD['DD']], title="Drawdown Curves", labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
     newnames = {'DD':'Model', 'wide_variable_1': bmark_name}
     fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],
@@ -80,7 +80,11 @@ def drawdown_curve_plot(portfolio_DD, bmark_DD, bmark_name):
 ###################################################################################################
 
 def account_returns_plot(portfolio_pct_returns):
-    fig = px.line(portfolio_pct_returns,  x=portfolio_pct_returns.index, y=['returns'], title="Portfolio Account Returns (%)", labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
+    # Define colors based on y values
+    portfolio_pct_returns["color"] = portfolio_pct_returns.returns.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+
+    fig = px.bar(portfolio_pct_returns,  x=portfolio_pct_returns.index, y=['returns'], color=portfolio_pct_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"}, title="Portfolio Account Returns (%)",  labels={'value': 'Percent', 'index':'Year', 'variable': ''} )
+    fig.update_layout(legend_title_text="Account Return Value")
     fig.show()
 
     return
@@ -95,10 +99,14 @@ def account_returns_plot(portfolio_pct_returns):
 ################################################################################################################
 
 def account_returns_dist_plot(portfolio_pct_returns):
-    fig = px.histogram(portfolio_pct_returns,  x=['returns'], title="Portfolio Account Returns Distribution (%)", nbins=250, labels={'value': '% Return', 'variable': ''} )
+    # Define colors based on y values
+    portfolio_pct_returns["color"] = portfolio_pct_returns.returns.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+
+    fig = px.histogram(portfolio_pct_returns,  x=['returns'], title="Portfolio Account Returns Distribution (%)", color=portfolio_pct_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=250, labels={'value': '% Return', 'variable': ''} )
     
     fig.update_layout(
         yaxis_title_text='Count', # yaxis label
+        legend_title_text="Account Return Values"
     )
 
     fig.show()
@@ -115,7 +123,13 @@ def account_returns_dist_plot(portfolio_pct_returns):
 ################################################################################################
 
 def trade_returns_plot(trades_returns):
-    fig = px.line(trades_returns,  x=trades_returns.index, y=['trade_ret_pct'], title="Portfolio Trade Returns (%)", labels={'value': 'Percent', 'index':'Trade Number', 'variable': ''} )
+    # Define colors based on y values
+    trades_returns["color"] = trades_returns.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+    
+    # Create scatter plot
+    fig = px.scatter(trades_returns, x=trades_returns.index, y=['trade_ret_pct'], color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},  title="Portfolio Trade Returns (%)", labels={'value': 'Percent', 'index':'Trade Number', 'variable': ''})
+    fig.update_layout(legend_title_text="Trade Return Value")
+
     fig.show()
 
     return 
@@ -130,10 +144,14 @@ def trade_returns_plot(trades_returns):
 ########################################################################################################
 
 def trade_returns_dist_plot(trades_returns):
-    fig = px.histogram(trades_returns,  x=['trade_ret_pct'], title="Portfolio Trade Returns Distribution (%)", nbins=100, labels={'value': '% Return', 'variable': ''} )
+    # Define colors based on y values
+    trades_returns["color"] = trades_returns.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
+
+    fig = px.histogram(trades_returns,  x=['trade_ret_pct'], title="Portfolio Trade Returns Distribution (%)", color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=100, labels={'value': '% Return', 'variable': ''} )
     
     fig.update_layout(
         yaxis_title_text='Count', # yaxis label
+        legend_title_text="Trade Returns Value"
     )
 
     fig.show()
@@ -155,7 +173,7 @@ def yearly_returns_plot(portfolio_df, bmark_df, bmark, period):
     elif period == "D":
         sample = "D"
         
-    ypfreturns = portfolio_df['returns'].resample("Y").apply(lambda x: ((x + 1).cumprod() - 1).last(sample))    
+    ypfreturns = portfolio_df['returns'].resample("Y").apply(lambda x: ((x + 1).cumprod() - 1).last(sample))  
     ypf = ypfreturns.index.to_list()
     pfyears = []
     for tstamp in ypf:
@@ -163,7 +181,7 @@ def yearly_returns_plot(portfolio_df, bmark_df, bmark, period):
     ypfreturns.index = pfyears
     ypfreturns.index.name = 'Year'
 
-    ybmreturns = bmark_df['returns'].resample("Y").apply(lambda x: ((x + 1).cumprod() - 1).last(sample))        
+    ybmreturns = bmark_df['returns'].resample("Y").apply(lambda x: ((x + 1).cumprod() - 1).last(sample))
     ybm = ybmreturns.index.to_list()
     bmyears = []
     for tstamp in ybm:
@@ -185,33 +203,33 @@ def yearly_returns_plot(portfolio_df, bmark_df, bmark, period):
 
 
 ###################### rolling returns plot ############################################################################################
-# input:  portfolio and benchmark series with percent 'Return' columns in decimal, period - 'D' = day and 'M' = month, benchmark symbol
-# output: yearly returns plot or 0 if period not 'D' or 'M'
+# input:  portfolio and benchmark series with balance columns, period - 'D' = day and 'M' = month, benchmark symbol
+# output: rolling 3/6/12 month returns plot or 0 if period not 'D' or 'M'
 #######################################################################################################################################
 
 def rolling_returns_plot(portfolio_df, bmark_df, bmark, period):
-    if period == 'D':
-        roll1 = 63
-        roll2 = 126
-        roll3 = 252
+    if period == 'D':     # add extra month to getting correct open
+        roll1 = 63 + 21
+        roll2 = 126 + 21
+        roll3 = 252 + 21
     elif period == 'M':
-        roll1 = 3
-        roll2 = 6
-        roll3 = 12
+        roll1 = 3 + 1
+        roll2 = 6 + 1
+        roll3 = 12 + 1
         
     # rolling returns
-    three_month = portfolio_df['returns'].rolling(roll1).sum()
-    six_month = portfolio_df['returns'].rolling(roll2).sum()
-    twelve_month = portfolio_df['returns'].rolling(roll3).sum()
+    three_month = (portfolio_df['balance'].iloc[-1]-portfolio_df['balance'].iloc[-roll1])/portfolio_df['balance'].iloc[-roll1]
+    six_month = (portfolio_df['balance'].iloc[-1]-portfolio_df['balance'].iloc[-roll2])/portfolio_df['balance'].iloc[-roll2]
+    twelve_month = (portfolio_df['balance'].iloc[-1]-portfolio_df['balance'].iloc[-roll3])/portfolio_df['balance'].iloc[-roll3]
     pfroll = ['3-Months', '6-Months', '12-Months']
-    pfreturns = pd.DataFrame({'returns':[three_month.iloc[-1], six_month.iloc[-1], twelve_month.iloc[-1]]}, index=pfroll)
+    pfreturns = pd.DataFrame({'returns':[three_month, six_month, twelve_month]}, index=pfroll)
     pfreturns.index.name = 'Period'
     
-    b_three_month  = bmark_df['returns'].rolling(roll1).sum()
-    b_six_month  = bmark_df['returns'].rolling(roll2).sum() 
-    b_twelve_month  = bmark_df['returns'].rolling(roll3).sum()
+    b_three_month = (bmark_df['balance'].iloc[-1]-bmark_df['balance'].iloc[-roll1])/bmark_df['balance'].iloc[-roll1]    
+    b_six_month = (bmark_df['balance'].iloc[-1]-bmark_df['balance'].iloc[-roll2])/bmark_df['balance'].iloc[-roll2]    
+    b_twelve_month = (bmark_df['balance'].iloc[-1]-bmark_df['balance'].iloc[-roll3])/bmark_df['balance'].iloc[-roll3]    
     bmroll = ['3-Months', '6-Months', '12-Months']
-    bmreturns = pd.DataFrame({'returns':[b_three_month.iloc[-1], b_six_month.iloc[-1], b_twelve_month.iloc[-1]]}, index=bmroll)
+    bmreturns = pd.DataFrame({'returns':[b_three_month, b_six_month, b_twelve_month]}, index=bmroll)
     bmreturns.index.name = 'Period'
 
     fig = px.bar(pfreturns, x=pfreturns.index, y=['returns', bmreturns['returns']],  text_auto='0.2%', title="Rolling Returns (%)", labels={'value': 'Percent', 'variable': ''} )
@@ -256,6 +274,7 @@ def monthly_returns_heatmap_plot(portfolio_df, period, data_type):
     years = []
     for tstamp in y:
         years.append(tstamp.year)
+    years = list(map(str, years))     # change from int to string for formatting
     
     z = month_matrix.reshape((len(y),12))
     

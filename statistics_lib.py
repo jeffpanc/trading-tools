@@ -327,7 +327,7 @@ def maximum_trade_win(trades):
     
 def number_of_trades(trades):
 
-    return len(trades)
+    return len(trades) - 1    # -1 for header
     
 
 ######################################### number of losses ###########################################
@@ -348,7 +348,7 @@ def trade_losses(trades):
 ####################################################################################################
     
 def trade_wins(trades):
-
+    
     return len(trades[(trades > 0)])
     
 

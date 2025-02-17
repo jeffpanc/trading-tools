@@ -185,7 +185,7 @@ def make_L2_metrics(portfolio_df, bmark_df, bmark_name, periodicity, Rf):
     L2_metrics.loc[len(L2_metrics.index)] = ['Downside Deviation', "{:.2%}".format(statistics_lib.downside_deviation(portfolio_df['returns'])), "{:.2%}".format(statistics_lib.downside_deviation(bmark_df['returns']))]
     
     # Beta - Beta is a measure of systematic risk and measures the volatility of a particular investment relative to the market or its benchmark as a whole.  
-    L2_metrics.loc[len(L2_metrics.index)] = ['Beta', "{:.2f}".format(statistics_lib.beta(portfolio_df['returns'], bmark_df['returns'])), 'N/A']
+    L2_metrics.loc[len(L2_metrics.index)] = ['Beta', "{:.2f}".format(statistics_lib.beta(portfolio_df['returns'], bmark_df['returns'])), '1.00']
 
     # Alpha - Alpha measures the active return of the investment compared to the market benchmark return. alpha = Fund Average Excess Return − Rf - (Beta × (Benchmark Average Excess Return - Rf))
     L2_metrics.loc[len(L2_metrics.index)] = ['Alpha (Annualized)', "{:.2%}".format(statistics_lib.annual_alpha(portfolio_df['returns'], bmark_df['returns'], Rf, periodicity)), 'N/A']

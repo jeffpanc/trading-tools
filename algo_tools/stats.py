@@ -81,7 +81,7 @@ with st.form('User Input'):
             st.write('')
 
             # Equity curves
-            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves (Log Scale)", labels={'value': 'US$', 'index':'Year','variable': ''}, log_y=True, color_discrete_map={
+            fig = px.line(account,  x=account.index, y=['balance', bmark['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}, color_discrete_map={
                  "balance": "blue",
                  "bmark['balance']": "orange"
              }) 

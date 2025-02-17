@@ -67,9 +67,9 @@ with st.form('User Input'):
 
         if selected_level == 0 or selected_level == 1 or selected_level == 2 or selected_level == 3:       # always print summary
             # create active returns for heatmap
-            active_df = pd.DataFrame()
-            active_df['returns'] = account['returns'] - bmark['returns']
-            active_df.index = account.index
+            # active_df = pd.DataFrame()
+            # active_df['returns'] = account['returns'] - bmark['returns']
+            # active_df.index = account.index
 
             st.write('')
             st.write("__Performance Summary:__", f"{account.index[0]:%B %d, %Y}" , "  ", "to","  ", f"{account.index[-1]:%B %d, %Y}")

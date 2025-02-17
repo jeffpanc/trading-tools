@@ -65,7 +65,7 @@ with st.form('User Input'):
         bmark.set_index('date', drop=True, inplace=True)
         bmark.index = pd.to_datetime(bmark.index)
 
-        reports_lib.reports_output(selected_level, selected_account_file, selected_trades_file, selected_bmark_file, selected_bmark, account.index[0], account.index[-1], selected_periodicity, selected_Rf)
+        reports_lib.reports_output(selected_level, account, trades, bmark, selected_bmark, account.index[0], account.index[-1], selected_periodicity, selected_Rf)
 
 
         # if selected_level == 0 or selected_level == 1 or selected_level == 2 or selected_level == 3:       # always print summary

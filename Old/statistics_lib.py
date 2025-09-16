@@ -60,34 +60,16 @@ warnings.filterwarnings('ignore')
 def annual_sharpe(returns, rf, period):
     
     if period == 'D':
-        rf_per_period = rf/252
-        excess_returns = returns - rf_per_period                                            # excess returns 
-        mean_excess_returns = excess_returns.mean()
-        std_excess_returns = excess_returns.std()                                           # standard deviation of excess returns
-        return (mean_excess_returns / std_excess_returns) * np.sqrt(252)                    # return annualized sharpe
+        excess_returns = returns.mean() * 252 - rf                               # excess returns average 
+        std_excess_returns = returns.std() * math.sqrt(252)                      # standard deviation of excess returns
     elif period == 'M':
-        rf_per_period = rf/12
-        excess_returns = returns - rf_per_period                                            # excess returns 
-        mean_excess_returns = excess_returns.mean()
-        std_excess_returns = excess_returns.std()                                           # standard deviation of excess returns
-        return (mean_excess_returns / std_excess_returns) * np.sqrt(12)                     # return annualized sharpe
+        excess_returns = returns.mean() * 12 - rf                                # excess returns average 
+        std_excess_returns = returns.std()  * math.sqrt(12)                      # standard deviation of excess returns
     else:
-        return 0                                                                            # return 0 if not day or month data
+        return 0                                                                 # return 0 if not day or month data
             
     
-    # return                                  # annualized sharpe
-    
-    # if period == 'D':
-    #     excess_returns = returns.mean() * 252 - rf                               # excess returns average 
-    #     std_excess_returns = returns.std() * math.sqrt(252)                      # standard deviation of excess returns
-    # elif period == 'M':
-    #     excess_returns = returns.mean() * 12 - rf                                # excess returns average 
-    #     std_excess_returns = returns.std()  * math.sqrt(12)                      # standard deviation of excess returns
-    # else:
-    #     return 0                                                                 # return 0 if not day or month data
-            
-    
-    # return (excess_returns / std_excess_returns)                                 # annualized sharpe
+    return (excess_returns / std_excess_returns)                                 # annualized sharpe
 
 ######################################### annualized sortino ratio ######################################################
 # description: finds the annualized sortino ratio of a series of percent returns in decimal
@@ -98,34 +80,15 @@ def annual_sharpe(returns, rf, period):
 def annual_sortino(returns, rf, period):
 
     if period == 'D':
-        rf_per_period = rf / 252
-        excess_returns = returns - rf_per_period                                 # excess returns 
-        downside_dev = downside_deviation(excess_returns)
-        annualized_return = excess_returns.mean() * 252
-        annualized_downside_deviation = downside_dev * np.sqrt(252)
-        return annualized_return / annualized_downside_deviation
+        excess_returns = returns.mean() * 252 - rf                               # excess returns average 
+        downside_dev = downside_deviation(returns) * math.sqrt(252)              # standard deviation of excess returns
     elif period == 'M':
-        rf_per_period = rf / 12
-        excess_returns = returns - rf_per_period                                 # excess returns average 
-        downside_dev = downside_deviation(excess_returns)
-        annualized_return = excess_returns.mean() * 12
-        annualized_downside_deviation = downside_dev * np.sqrt(12)
-        return annualized_return / annualized_downside_deviation
+        excess_returns = returns.mean() * 12 - rf                                # excess returns average 
+        downside_dev = downside_deviation(returns)  * math.sqrt(12)              # standard deviation of excess returns
     else:
         return 0                                                                 # return 0 if not day or month data
     
-    
-    # return (excess_returns / downside_dev)                                       # annualized sortiono 
-    # if period == 'D':
-    #     excess_returns = returns.mean() * 252 - rf                               # excess returns average 
-    #     downside_dev = downside_deviation(returns) * math.sqrt(252)              # standard deviation of excess returns
-    # elif period == 'M':
-    #     excess_returns = returns.mean() * 12 - rf                                # excess returns average 
-    #     downside_dev = downside_deviation(returns)  * math.sqrt(12)              # standard deviation of excess returns
-    # else:
-    #     return 0                                                                 # return 0 if not day or month data
-    
-    # return (excess_returns / downside_dev)                                       # annualized sortiono 
+    return (excess_returns / downside_dev)                                       # annualized sortiono 
 
 
 ######################################### annualized standard deviation ###########################################
@@ -716,7 +679,7 @@ def kurtosis(returns):
 ######################################### analytical VaR 5% ###########################################################################################################################################
 # description: Value at Risk (VaR) measures the scale of loss at a given confidence level. For example, if the 95% confidence one-month VaR is 3%, there is 95% confidence that over the 
 #              next month the portfolio will not lose more than 3%. VaR represensts a loss, but it is conventionally reported as a positive number. Value at Risk can be calculated 
-#              directly based on historical returns based on a given percentile or analytically (parametric) based on the mean and standard deviation of the returns.
+#              directly based on historical returns based on a given percentile or analytically based on the mean and standard deviation of the returns.
 # input:       model percent return in decimal
 # output:      5% VaR in decimal
 ##########################################################################################################################################################################################
@@ -740,7 +703,7 @@ def historical_var(returns):
 
 
 ######################################### conditional VaR 5% ###########################################################################################################################################
-# description: Conditional Value at Risk, or CVaR/Expected Shortfall, is an estimate of expected losses sustained in the worst 1 - x% of scenarios. CVaR is commonly quoted with quantiles such as 95, 99, and 99.9.
+# description: Conditional Value at Risk, or CVaR, is an estimate of expected losses sustained in the worst 1 - x% of scenarios. CVaR is commonly quoted with quantiles such as 95, 99, and 99.9.
 #              example: CVaR(95) = -2.5%.  in the worst 5% of cases, losses were on average exceed -2.5% historically.
 # input:       model percent return in decimal
 # output:      5% VaR in decimal

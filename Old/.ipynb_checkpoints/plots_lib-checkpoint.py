@@ -43,7 +43,7 @@ warnings.filterwarnings('ignore')
 #################################################################################################################
 
 def equity_curve_plot(portfolio_df, bmark_df, bmark_name):
-    fig = px.line(portfolio_df,  x=portfolio_df.index, y=['balance', bmark_df['balance']], title="Equity Curves (Logrithmic Scale)", log_y=True, labels={'value': 'US$', 'index':'Year','variable': ''}) 
+    fig = px.line(portfolio_df,  x=portfolio_df.index, y=['balance', bmark_df['balance']], title="Equity Curves", labels={'value': 'US$', 'index':'Year','variable': ''}) 
     newnames = {'balance':'Model', 'wide_variable_1': bmark_name}
     fig.for_each_trace(lambda t: t.update(name = newnames[t.name],
                                       legendgroup = newnames[t.name],
@@ -127,7 +127,7 @@ def trade_returns_plot(trades_returns):
     trades_returns["color"] = trades_returns.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
     
     # Create scatter plot
-    fig = px.scatter(trades_returns, x=trades_returns.index, y=['trade_ret_pct'], color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},  title="Portfolio Trade Returns (%)", labels={'_value': 'Percent', 'index':'Trade Number', 'variable': ''})
+    fig = px.scatter(trades_returns, x=trades_returns.index, y=['trade_ret_pct'], color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},  title="Portfolio Trade Returns (%)", labels={'value': 'Percent', 'index':'Trade Number', 'variable': ''})
     fig.update_layout(legend_title_text="Trade Return Value")
 
     fig.show()
@@ -147,7 +147,7 @@ def trade_returns_dist_plot(trades_returns):
     # Define colors based on y values
     trades_returns["color"] = trades_returns.trade_ret_pct.apply(lambda val: "less then 0" if val < 0 else "greater than or equal 0")
 
-    fig = px.histogram(trades_returns,  x=['trade_ret_pct'], title="Portfolio Trade Returns Distribution (%)", color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=100, labels={'_value': '% Return', 'variable': ''} )
+    fig = px.histogram(trades_returns,  x=['trade_ret_pct'], title="Portfolio Trade Returns Distribution (%)", color=trades_returns["color"], color_discrete_map={"less then 0": "red", "greater than or equal 0": "green"},nbins=100, labels={'value': '% Return', 'variable': ''} )
     
     fig.update_layout(
         yaxis_title_text='Count', # yaxis label

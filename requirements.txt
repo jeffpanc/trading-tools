@@ -5,3 +5,5 @@ matplotlib
 Matplotlib-inline
 numba
 streamlit
+pandas
+numpy

@@ -806,8 +806,10 @@ def monte_carlo(trades, start, end, runs, init_bal, max_dd_allowed, Rf, period):
     drawdown = pd.DataFrame(columns=['max_dd'], dtype=float, index=range(0,runs))                                  # holds the maximum drawdowns for each simulation
     all_drawdown = pd.DataFrame( dtype=float, index=range(0,runs))                                                 # holds all of the drawdowns for each simulation
     ratios = pd.DataFrame(columns=['mar', 'sharpe'], dtype=float, index=range(0,runs))                             # holds the ratios of each simulation
-    metrics_dict = {}                                                                                              # holds metrics
-        
+    metrics_dict = {} # holds metrics
+    
+    print(trades) 
+    
     # create a random sequence of trade results for each run and add initial balance to start of each
     randy = np.random.choice(trades['returns'], (len(trades.index), runs))                                 # create a random mix of trade values for each simulation
     randy = np.insert(randy, 0, init_bal, axis=0)                                                          # insert the starting balance at the beginning of each simulation array

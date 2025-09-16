@@ -85,8 +85,6 @@ with st.form('User Input'):
         data.set_index('date', drop=True, inplace=True)
         data.index = pd.to_datetime(data.index)
         
-        print(data)
-        
         equity_df, drawdown_df, all_drawdown_df, CAGR_df, Ratios_df, winloss_df, metrics, ci_score = statistics_lib.monte_carlo(data, data.index[0], data.index[-1], int(selected_runs), float(selected_balance), float(selected_ruin), float(selected_Rf), selected_period)
         
         # set up and display tables and charts

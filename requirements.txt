@@ -1,6 +1,6 @@
 scipy
-plotly==5.20.0
-IPython==8.20.0
-matplotlib==3.8.3
-Matplotlib-inline==0.1.6
-numba==0.59.0
+plotly
+IPython
+matplotlib
+Matplotlib-inline
+numba

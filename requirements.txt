@@ -4,3 +4,4 @@ IPython
 matplotlib
 Matplotlib-inline
 numba
+streamlit
